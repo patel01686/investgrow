@@ -33,6 +33,17 @@ app.post('/signup', async (req, res) => {
   }
 });
 
+//unnecessary
+const adminRoutes = require('./routes/adminRoutes');
+app.use('/admin', adminRoutes);
+const session = require('express-session');
+app.use(session({
+  secret: 'yourSecret',
+  resave: false,
+  saveUninitialized: false
+}));
+
+
 // Login page
 app.get('/login', (req, res) => res.render('login'));
 
