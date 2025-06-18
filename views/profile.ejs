@@ -208,24 +208,26 @@
     }
 
     .about-section {
-      margin-top: 40px;
-      background-color: whitesmoke;
-      
+  margin: 20px 0; /* Top-bottom space, left-right zero */
+  background-color: transparent; /* koi background nahi */
+  padding: 0; /* koi extra andar space nahi */
+  box-shadow: none; /* koi shadow nahi */
+  border-radius: 0; 
     }
 
     .contact {
-      background-color: #f9f9f9;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-width: 700px;
-      margin: 50px auto;
-      text-align: center;
+  background-color: transparent; /* koi background nahi */
+  box-shadow: none; /* koi shadow nahi */
+  border-radius: 0; /* koi border nahi */
+  margin: 30px 0; /* top-bottom gap */
+  padding: 0; /* andar koi padding nahi */
+  text-align: center;
     }
 
     .contact h2 {
-      font-size: 24px;
-      color:black;
-      margin-bottom: 16px;
+      font-size: 22px;
+      color: #2F855A;
+      margin-bottom: 10px;
     }
 
     .contact a {
@@ -241,12 +243,11 @@
       color: #48BB78;
     }
 
-    .contact p {
-      font-size: 14px;
-      color: #4A5568;
-      margin-top: 12px;
-    }
-
+  .contact p {
+  font-size: 14px;
+  color: #4A5568;
+  margin-top: 8px;
+}
     footer {
       text-align: center;
       padding: 20px;
