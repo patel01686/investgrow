@@ -126,17 +126,23 @@
     }
 
     .investment-banner {
-  background: linear-gradient(135deg, #0F2027, #203A43, #2C5364); /* Premium gradient */
+  background: linear-gradient(135deg, #0F2027, #203A43, #2C5364); /* premium dark gradient */
   color: white;
   padding: 30px 20px;
-  border-radius: 0;
   text-align: center;
-  margin: 20px 0;
-  width: 100vw; /* full viewport width */
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw; /* center align trick */
+  margin: 30px 0 20px 0;
+  border-radius: 0;
+  width: 100%;
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
+@media screen and (max-width: 768px) {
+  .investment-banner {
+    padding: 24px 12px;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
 }
 
 .investment-banner h3 {
@@ -145,7 +151,7 @@
 }
 
 .investment-banner h3 span {
-  color: #FFD700;
+  color: var(--gold);
 }
 
 .investment-banner p {
@@ -153,12 +159,6 @@
   opacity: 0.9;
 }
 
-@media screen and (max-width: 768px) {
-  .investment-banner {
-    padding: 20px 10px;
-    margin: 15px 0;
-  }
-}
 
     .products {
       display: grid;
