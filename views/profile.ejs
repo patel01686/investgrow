@@ -126,14 +126,17 @@
     }
 
     .investment-banner {
-  background: linear-gradient(135deg, #0F2027, #203A43, #2C5364); /* Premium dark gradient */
+  background: linear-gradient(135deg, #0F2027, #203A43, #2C5364); /* Premium gradient */
   color: white;
   padding: 30px 20px;
-  border-radius: 0; /* Edge to edge look */
+  border-radius: 0;
   text-align: center;
-  margin: 0; /* No side margin */
-  width: 100%; /* Full width */
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  margin: 20px 0;
+  width: 100vw; /* full viewport width */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw; /* center align trick */
 }
 
 .investment-banner h3 {
@@ -142,7 +145,7 @@
 }
 
 .investment-banner h3 span {
-  color: #FFD700; /* Gold color for highlighted text */
+  color: #FFD700;
 }
 
 .investment-banner p {
@@ -153,11 +156,9 @@
 @media screen and (max-width: 768px) {
   .investment-banner {
     padding: 20px 10px;
-    border-radius: 0;
+    margin: 15px 0;
   }
 }
-
-     
 
     .products {
       display: grid;
