@@ -11,7 +11,6 @@
       background: #f8f8f8;
     }
 
-    /* Navbar */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -23,15 +22,8 @@
       top: 0;
       z-index: 100;
     }
-    .nav-left {
-      display: flex;
-      align-items: center;
-    }
-    .logo {
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: whitesmoke;
-    }
+    .nav-left { display: flex; align-items: center; }
+    .logo { font-size: 1.6rem; font-weight: bold; color: whitesmoke; }
     .profile-dropdown {
       display: none;
       position: absolute;
@@ -42,18 +34,9 @@
       border-radius: 5px;
       z-index: 1000;
     }
-    .profile-dropdown ul {
-      list-style: none;
-      margin: 0;
-      padding: 5px 0;
-    }
-    .profile-dropdown li {
-      padding: 8px 15px;
-    }
-    .profile-dropdown li a {
-      text-decoration: none;
-      color: black;
-    }
+    .profile-dropdown ul { list-style: none; margin: 0; padding: 5px 0; }
+    .profile-dropdown li { padding: 8px 15px; }
+    .profile-dropdown li a { text-decoration: none; color: black; }
 
     .nav-links {
       display: flex;
@@ -85,7 +68,6 @@
       background: white;
     }
 
-    /* Sections */
     .hero {
       text-align: center;
       padding: 40px 20px;
@@ -113,7 +95,6 @@
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .product-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 20px rgba(0,0,0,0.15);
@@ -121,8 +102,9 @@
 
     .product-card img {
       width: 100%;
-      height: 150px;
+      height: 220px; /* square-ish, better ratio */
       object-fit: cover;
+      border-radius: 8px;
       background: #eee;
     }
 
@@ -136,7 +118,6 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
-
     .buy-btn:hover {
       background-color: #218838;
     }
@@ -148,7 +129,6 @@
       color: white;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -161,16 +141,11 @@
         border-radius: 5px;
         padding: 10px;
       }
-      .nav-links.active {
-        display: flex;
-      }
-      .hamburger {
-        display: flex;
-      }
+      .nav-links.active { display: flex; }
+      .hamburger { display: flex; }
     }
-    
+
     .investment-banner {
-      
       color: whitesmoke;
       padding: 20px;
       border-radius: 12px;
@@ -179,56 +154,30 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     }
 
-    .investment-banner h3 {
-      font-size: 22px;
-      margin-bottom: 6px;
-    }
+    .investment-banner h3 { font-size: 22px; margin-bottom: 6px; }
+    .investment-banner p { font-size: 14px; opacity: 0.9; }
 
-    .investment-banner h3 span {
-      color: var(--gold);
-    }
-    .investment-banner p {
-      font-size: 14px;
-      opacity: 0.9;
-    }
     .contact {
-  background-color: #f9f9f9;  /* halka grey background */
-  padding: 20px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  max-width: 600px;
-  margin: 30px auto;
-  text-align: center;
-}
-
-.contact h2 {
-  font-size: 24px;
-  color: #2F855A; /* primary color */
-  margin-bottom: 16px;
-}
-
-.contact a {
-  display: block;
-  text-decoration: none;
-  color: #2D3748;
-  font-weight: 500;
-  margin: 8px 0;
-  font-size: 16px;
-  transition: color 0.3s;
-}
-
-.contact a:hover {
-  color: #48BB78; /* accent color on hover */
-}
-
-.contact p {
-  font-size: 14px;
-  color: #4A5568;
-  margin-top: 12px;
-}
-
- 
-
+      background-color: #f9f9f9;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 30px auto;
+      text-align: center;
+    }
+    .contact h2 { font-size: 24px; color: #2F855A; margin-bottom: 16px; }
+    .contact a {
+      display: block;
+      text-decoration: none;
+      color: #2D3748;
+      font-weight: 500;
+      margin: 8px 0;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+    .contact a:hover { color: #48BB78; }
+    .contact p { font-size: 14px; color: #4A5568; margin-top: 12px; }
   </style>
 </head>
 <body>
@@ -354,73 +303,43 @@
 
   <footer>© 2025 InvestGrow. All rights reserved.</footer>
 
-<script>
-  const profileBtn = document.getElementById('profileBtn');
-  const profileDropdown = document.getElementById('profileDropdown');
-  profileBtn.onclick = () => {
-    profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
-  };
+  <script>
+    const profileBtn = document.getElementById('profileBtn');
+    const profileDropdown = document.getElementById('profileDropdown');
+    profileBtn.onclick = () => {
+      profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+    };
 
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
-  hamburger.onclick = () => {
-    navLinks.classList.toggle('active');
-  };
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.onclick = () => {
+      navLinks.classList.toggle('active');
+    };
 
-  const homeLink = document.getElementById('homeNavLink');
-  const productsLink = document.getElementById('productsNavLink');
-  const heroSection = document.querySelector('.hero');
-  const aboutSection = document.querySelector('.about');
-  const contactSection = document.querySelector('.contact');
-  const productsSection = document.getElementById('products');
-  const allProductsSection = document.getElementById('allProductsSection');
-  const productsNavbarGrid = document.getElementById('productsNavbarGrid');
-  const mainProductsGrid = document.getElementById('mainProductsGrid');
+    const productsNavbarGrid = document.getElementById('productsNavbarGrid');
+    const mainProductsGrid = document.getElementById('mainProductsGrid');
 
-  function populateProducts() {
-    productsNavbarGrid.innerHTML = '';
-    const productCards = mainProductsGrid.querySelectorAll('.product-card');
-    productCards.forEach(card => {
-      const clone = card.cloneNode(true);
-      productsNavbarGrid.appendChild(clone);
-    });
-  }
+    function populateProducts() {
+      productsNavbarGrid.innerHTML = '';
+      const productCards = mainProductsGrid.querySelectorAll('.product-card');
+      productCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        productsNavbarGrid.appendChild(clone);
+      });
+      attachBuyButtonHandlers(); // ✅ Attach events to cloned buttons
+    }
 
-  function showHome() {
-    heroSection.style.display = 'block';
-    aboutSection.style.display = 'block';
-    contactSection.style.display = 'block';
-    productsSection.style.display = 'block';
-    allProductsSection.style.display = 'none';
-  }
+    function attachBuyButtonHandlers() {
+      const buyButtons = document.querySelectorAll('.buy-btn');
+      buyButtons.forEach(btn => {
+        btn.onclick = () => {
+          window.location.href = '/login';
+        };
+      });
+    }
 
-  function showProductsOnly() {
-    heroSection.style.display = 'none';
-    aboutSection.style.display = 'none';
-    contactSection.style.display = 'none';
-    productsSection.style.display = 'none';
-    allProductsSection.style.display = 'block';
-    populateProducts();
-  }
+    attachBuyButtonHandlers(); // ✅ Run once on load
 
-  homeLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    showHome();
-  });
-
-  productsLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    showProductsOnly();
-  });
-
-  // NEW: Make Buy Now buttons redirect to /login
-  const buyButtons = document.querySelectorAll('.buy-btn');
-  buyButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      window.location.href = '/login';
-    });
-  });
-</script>
-
+  </script>
 </body>
 </html>
