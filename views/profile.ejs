@@ -124,25 +124,15 @@
       background-color: #276749;
       transform: translateY(-2px);
     }
-
-    .investment-banner {
-  background: linear-gradient(135deg, #0F2027, #203A43, #2C5364); /* premium dark gradient */
+     
+      .investment-banner {
+  background: linear-gradient(135deg, #3B5998, #8B7D6B); /* Royal blue + deep gold/brown */
   color: white;
-  padding: 30px 20px;
+  padding: 30px;
+  border-radius: 12px;
   text-align: center;
-  margin: 30px 0 20px 0;
-  border-radius: 0;
-  width: 100%;
-  margin-left: -30px;
-  margin-right: -30px;
-}
-
-@media screen and (max-width: 768px) {
-  .investment-banner {
-    padding: 24px 12px;
-    margin-left: -16px;
-    margin-right: -16px;
-  }
+  margin: 20px -15px; /* remove side gap */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* subtle shadow */
 }
 
 .investment-banner h3 {
@@ -151,7 +141,7 @@
 }
 
 .investment-banner h3 span {
-  color: var(--gold);
+  color: #FFD700; /* golden text for 10% daily return */
 }
 
 .investment-banner p {
@@ -159,6 +149,21 @@
   opacity: 0.9;
 }
 
+@media (max-width: 768px) {
+  .investment-banner {
+    padding: 24px;
+    margin: 20px -10px;
+    background: linear-gradient(135deg, #4C669F, #94785D); /* softer royal tone for mobile */
+  }
+
+  .investment-banner h3 {
+    font-size: 22px;
+  }
+
+  .investment-banner p {
+    font-size: 14px;
+  }
+}
 
     .products {
       display: grid;
@@ -343,7 +348,7 @@
       <!-- Example product -->
       <div class="product-card">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyQFwIUqQ1MDIK49kf15UTsYpQaiXPPv0JXg&s" alt="Product 1">
-        <h3>Product 1</h3>
+        <h3>Laptop</h3>
         <p>Per Day Income ₹30</p>
         <p>Earning Day 5</p>
         <p>Total Income ₹150</p>
