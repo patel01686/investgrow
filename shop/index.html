@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeMarket | Premium E-Commerce</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+       
+        <div class="header-main container">
+            <div class="logo">
+                <h1>LuxeMarket</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#featured">Featured</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="action-icons">
+                    <a href="#" class="account-icon"><i class="fas fa-user"></i></a>
+                    <a href="#" class="wishlist-icon"><i class="fas fa-heart"></i><span class="count wishlist-count">0</span></a>
+                    <a href="#" class="cart-icon" id="cart-toggle"><i class="fas fa-shopping-cart"></i><span class="count cart-count">0</span></a>
+                </div>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+            <div class="empty-cart-message">Your cart is empty</div>
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn primary-btn checkout-btn">Checkout</button>
+            <button class="btn secondary-btn view-cart-btn">View Cart</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Luxury Shopping Experience</h1>
+                <p>Discover premium products curated just for you</p>
+                <div class="hero-buttons">
+                    <a href="#shop" class="btn primary-btn">Shop Now</a>
+                    <a href="#featured" class="btn secondary-btn">Explore Featured</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2>Shop by Category</h2>
+                <p>Browse our premium collections</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Electronics">
+                    <div class="category-info">
+                        <h3>Electronics</h3>
+                        <a href="#" class="btn outline-btn">View Products</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Fashion">
+                    <div class="category-info">
+                        <h3>Fashion</h3>
+                        <a href="#" class="btn outline-btn">View Products</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Home & Decor">
+                    <div class="category-info">
+                        <h3>Home & Decor</h3>
+                        <a href="#" class="btn outline-btn">View Products</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Beauty">
+                    <div class="category-info">
+                        <h3>Beauty</h3>
+                        <a href="#" class="btn outline-btn">View Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="products featured" id="featured">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Products</h2>
+                <p>Handpicked premium selections</p>
+            </div>
+            <div class="product-grid" id="featured-products">
+                <!-- Products will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section class="products new-arrivals" id="shop">
+        <div class="container">
+            <div class="section-header">
+                <h2>New Arrivals</h2>
+                <p>The latest additions to our collection</p>
+            </div>
+            <div class="product-filter">
+                <div class="filter-options">
+                    <select id="sort-by">
+                        <option value="default">Sort By: Default</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                    <select id="filter-category">
+                        <option value="all">All Categories</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="home">Home & Decor</option>
+                        <option value="beauty">Beauty</option>
+                    </select>
+                </div>
+                <div class="view-options">
+                    <button class="view-btn grid-view active"><i class="fas fa-th"></i></button>
+                    <button class="view-btn list-view"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            <div class="product-grid" id="all-products">
+                <!-- Products will be dynamically added here -->
+            </div>
+            <div class="pagination">
+                <button class="pagination-btn prev-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                <div class="page-numbers">
+                    <span class="page-number active">1</span>
+                    <span class="page-number">2</span>
+                    <span class="page-number">3</span>
+                </div>
+                <button class="pagination-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Customers Say</h2>
+                <p>Read about experiences from our valued clients</p>
+            </div>
+            <div class="testimonial-slider" id="testimonial-slider">
+                <!-- Testimonials will be dynamically added here -->
+            </div>
+            <div class="testimonial-dots">
+                <!-- Dots will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Be the first to know about new arrivals, special offers, and exclusive events</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn primary-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="section-header">
+                        <h2>About LuxeMarket</h2>
+                    </div>
+                    <p>LuxeMarket is your premier destination for premium shopping experiences. We curate the finest products from around the globe to bring you unparalleled quality and luxury.</p>
+                    <p>Our mission is to make luxury accessible while maintaining the highest standards of quality and customer service.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Premium Quality Products</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-truck"></i>
+                            <span>Fast & Free Shipping</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure Payment</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-undo"></i>
+                            <span>30-Day Returns</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://www.financialexpress.com/wp-content/uploads/2022/05/e-galleria-667.jpg" alt="About LuxeMarket">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed Section -->
+    <section class="instagram-feed">
+        <div class="container">
+            <div class="section-header">
+                <h2>Follow Us on Instagram</h2>
+                <p>@luxemarket</p>
+            </div>
+            <div class="instagram-grid">
+                <a href="#" class="instagram-item">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Instagram Post">
+                </a>
+                <a href="#" class="instagram-item">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Instagram Post">
+                </a>
+                <a href="#" class="instagram-item">
+                    <img src="https://images.unsplash.com/photo-1537832816519-689ad163238b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Instagram Post">
+                </a>
+                <a href="#" class="instagram-item">
+                    <img src="https://images.unsplash.com/photo-1560243563-062bfc001d68?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Instagram Post">
+                </a>
+                <a href="#" class="instagram-item">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Instagram Post">
+                </a>
+                <a href="#" class="instagram-item">
+                    <img src="https://images.unsplash.com/photo-1445282768818-728615cc910a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Instagram Post">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-columns">
+                    <div class="footer-column">
+                        <h3>LuxeMarket</h3>
+                        <p>Your premium shopping destination for luxury products and exceptional experiences.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#shop">Shop</a></li>
+                            <li><a href="#featured">Featured</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Customer Service</h4>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Shipping Policy</a></li>
+                            <li><a href="#">Returns & Exchanges</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact Us</h4>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-map-marker-alt"></i> Patna,Bihar,India</li>
+                            <li><i class="fas fa-phone"></i> +91 7639024110</li>
+                            <li><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97fef9f1f8d7fbe2eff2faf6e5fcf2e3b9f4f8fa">luxmarket@gmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="payment-methods">
+                    <span>We Accept:</span>
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-apple-pay"></i>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 LuxeMarket. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Quick View Modal -->
+    <div class="modal" id="quick-view-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-quick-view"><i class="fas fa-times"></i></button>
+            <div class="product-quick-view" id="quick-view-content">
+                <!-- Quick view content will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <!-- Scripts -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module" src="./script.js"></script>
+    <script>
+        // 1. Dummy Products
+const products = [
+  { id: 1, name: "Smartphone", category: "electronics", price: 499, image: "https://via.placeholder.com/300x300?text=Smartphone" },
+  { id: 2, name: "Laptop", category: "electronics", price: 999, image: "https://via.placeholder.com/300x300?text=Laptop" },
+  { id: 3, name: "Headphones", category: "electronics", price: 199, image: "https://via.placeholder.com/300x300?text=Headphones" },
+  { id: 4, name: "Smartwatch", category: "electronics", price: 299, image: "https://via.placeholder.com/300x300?text=Smartwatch" },
+  { id: 5, name: "Camera", category: "electronics", price: 799, image: "https://via.placeholder.com/300x300?text=Camera" },
+  { id: 6, name: "Tablet", category: "electronics", price: 399, image: "https://via.placeholder.com/300x300?text=Tablet" },
+
+  { id: 7, name: "Dress", category: "fashion", price: 79, image: "https://via.placeholder.com/300x300?text=Dress" },
+  { id: 8, name: "Jeans", category: "fashion", price: 59, image: "https://via.placeholder.com/300x300?text=Jeans" },
+  { id: 9, name: "Jacket", category: "fashion", price: 129, image: "https://via.placeholder.com/300x300?text=Jacket" },
+  { id: 10, name: "Sneakers", category: "fashion", price: 99, image: "https://via.placeholder.com/300x300?text=Sneakers" },
+  { id: 11, name: "Handbag", category: "fashion", price: 149, image: "https://via.placeholder.com/300x300?text=Handbag" },
+  { id: 12, name: "Watch", category: "fashion", price: 199, image: "https://via.placeholder.com/300x300?text=Watch" },
+
+  { id: 13, name: "Sofa", category: "home", price: 499, image: "https://via.placeholder.com/300x300?text=Sofa" },
+  { id: 14, name: "Lamp", category: "home", price: 59, image: "https://via.placeholder.com/300x300?text=Lamp" },
+  { id: 15, name: "Table", category: "home", price: 299, image: "https://via.placeholder.com/300x300?text=Table" },
+  { id: 16, name: "Chair", category: "home", price: 99, image: "https://via.placeholder.com/300x300?text=Chair" },
+  { id: 17, name: "Curtains", category: "home", price: 49, image: "https://via.placeholder.com/300x300?text=Curtains" },
+  { id: 18, name: "Wall Art", category: "home", price: 89, image: "https://via.placeholder.com/300x300?text=Wall+Art" },
+
+  { id: 19, name: "Lipstick", category: "beauty", price: 19, image: "https://via.placeholder.com/300x300?text=Lipstick" },
+  { id: 20, name: "Perfume", category: "beauty", price: 59, image: "https://via.placeholder.com/300x300?text=Perfume" },
+  { id: 21, name: "Foundation", category: "beauty", price: 39, image: "https://via.placeholder.com/300x300?text=Foundation" },
+  { id: 22, name: "Face Cream", category: "beauty", price: 29, image: "https://via.placeholder.com/300x300?text=Face+Cream" },
+  { id: 23, name: "Hair Oil", category: "beauty", price: 15, image: "https://via.placeholder.com/300x300?text=Hair+Oil" },
+  { id: 24, name: "Face Mask", category: "beauty", price: 10, image: "https://via.placeholder.com/300x300?text=Face+Mask" },
+];
+
+// 2. Find buttons
+const viewProductButtons = document.querySelectorAll('.category-card .outline-btn');
+const allProductsContainer = document.getElementById('all-products');
+
+// 3. Add click events
+viewProductButtons.forEach(button => {
+  button.addEventListener('click', e => {
+    e.preventDefault();
+
+    // Find which category was clicked
+    const categoryCard = button.closest('.category-card');
+    const categoryName = categoryCard.querySelector('h3').innerText.toLowerCase();
+
+    let categoryKey = "";
+    if (categoryName.includes("electronics")) categoryKey = "electronics";
+    else if (categoryName.includes("fashion")) categoryKey = "fashion";
+    else if (categoryName.includes("home")) categoryKey = "home";
+    else if (categoryName.includes("beauty")) categoryKey = "beauty";
+
+    // Filter products
+    const filteredProducts = products.filter(p => p.category === categoryKey);
+
+    // Clear existing
+    allProductsContainer.innerHTML = "";
+
+    // Add products
+    filteredProducts.forEach(product => {
+      const productDiv = document.createElement('div');
+      productDiv.classList.add('product-card');
+      productDiv.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>$${product.price}</p>
+        <button class="btn primary-btn">Add to Cart</button>
+      `;
+      allProductsContainer.appendChild(productDiv);
+    });
+
+    // Scroll to New Arrivals
+    document.getElementById('shop').scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+    </script>
+</body>
+</html>
