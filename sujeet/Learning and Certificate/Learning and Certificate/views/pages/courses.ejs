@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head', { title: title }) %>
+  <body>
+    <a href="/" class="back-btn" style="position:fixed;top:18px;left:18px;z-index:1000;background:rgba(255,255,255,0.85);color:#1976d2;padding:8px 16px;border-radius:24px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.08);display:flex;align-items:center;gap:6px;"><span style="font-size:18px;line-height:1;">&#8592;</span></a>
+    <main>
+      <section class="courses">
+        <div class="container">
+          <div class="section-header" style="text-align:center;">
+            <h1 style="margin:0 auto;">Explore Our Courses</h1>
+            <p>
+              Advance your skills with our curated programs in programming, AI,
+              ML, cloud, security, and more.
+            </p>
+          </div>
+          <div class="courses-grid pw-courses-grid">
+            <% if (courses && courses.length) { courses.filter(function(course) { return course.badge !== 'Popular'; }).forEach(function(course, idx) { %>
+            <div class="course-card pw-course-card"<% if (course.title === 'JEE Mains') { %> style="font-size:0.85em;"<% } %>>
+              <% if (course.badge) { %>
+              <span class="course-badge pw-badge"><%= course.badge %></span>
+              <% } %>
+              <div class="course-content pw-course-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span class="course-category pw-category"><%= course.category %></span>
+                  <div class="dropdown" style="position: relative;">
+                    <button class="dots-btn" onclick="toggleDropdown('dropdown-<%= idx %>')" type="button" aria-label="More options">
+                      <span style="font-size: 1.5em;">&#8942;</span>
+                    </button>
+                    <div class="dropdown-menu" id="dropdown-<%= idx %>" style="display: none; position: absolute; right: 0; top: 30px; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); min-width: 160px; z-index: 10;">
+                      <a class="dropdown-item" href="/files/<%= course.title.replace(/\s+/g, '').toLowerCase() %>-ppt.pdf" target="_blank">PPT</a>
+                      <a class="dropdown-item" href="/files/<%= course.title.replace(/\s+/g, '').toLowerCase() %>-pdf.pdf" target="_blank">PDF</a>
+                      <a class="dropdown-item" href="/files/<%= course.title.replace(/\s+/g, '').toLowerCase() %>-notes.pdf" target="_blank">Notes</a>
+                      <a class="dropdown-item" href="/files/<%= course.title.replace(/\s+/g, '').toLowerCase() %>-crash.pdf" target="_blank">Crash Course</a>
+                      <a class="dropdown-item" href="/files/<%= course.title.replace(/\s+/g, '').toLowerCase() %>-dpp.pdf" target="_blank">DPP</a>
+                      <a class="dropdown-item" href="/videos/<%= course.title.replace(/\s+/g, '').toLowerCase() %>" target="_blank">Video</a>
+                    </div>
+                  </div>
+                </div>
+                <h3 class="pw-title"><%= course.title %></h3>
+                <p class="pw-desc"><%= course.description %></p>
+                <div class="course-meta pw-meta">
+                  <span class="course-meta-item"><i class="fas fa-clock"></i> <%= course.duration %></span>
+                  <span class="course-meta-item"><i class="fas fa-signal"></i> <%= course.level %></span>
+                </div>
+                <div class="course-price pw-price">
+                  ₹<%= course.price %> <% if (course.originalPrice) { %>
+                  <span class="price-original">₹<%= course.originalPrice %></span>
+                  <% } %>
+                </div>
+                <a
+                  href="/courses/<%= course.slug %>"
+                  class="btn btn-primary btn-block pw-btn"
+                  >View Details</a>
+              </div>
+            </div>
+            <% }); } else { %>
+            <div
+              style="text-align: center; color: var(--gray); font-size: 18px"
+            >
+              No courses available.
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </section>
+    </main>
+    <style>
+      .pw-courses-grid {
+        gap: 40px;
+        padding-bottom: 30px;
+      }
+      .pw-course-card {
+        background: #0a2540;
+        border-radius: 18px;
+        box-shadow: 0 6px 32px 0 rgba(10,37,64,0.10);
+        color: #fff;
+        font-family: 'Inter', 'Poppins', sans-serif;
+        padding: 0 0 24px 0;
+        overflow: hidden;
+        border: 1.5px solid #ffd600;
+        position: relative;
+        transition: box-shadow 0.2s, transform 0.2s;
+      }
+      .pw-course-card:hover {
+        box-shadow: 0 12px 40px 0 rgba(10,37,64,0.18);
+        transform: translateY(-6px) scale(1.03);
+        border-color: #ffb800;
+      }
+      .pw-badge {
+        background: linear-gradient(90deg, #ffd600 60%, #ffb800 100%);
+        color: #0a2540;
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 6px 18px;
+        border-radius: 16px 0 16px 0;
+        position: absolute;
+        top: 18px;
+        left: 0;
+        z-index: 2;
+        box-shadow: 0 2px 8px rgba(255,214,0,0.10);
+        letter-spacing: 0.5px;
+      }
+      /* .pw-image-wrap and .pw-course-image removed as images are no longer shown */
+      .pw-course-card:hover .pw-course-image {
+        transform: scale(1.04);
+      }
+      .pw-course-content {
+        padding: 22px 22px 0 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .pw-category {
+        color: #ffd600;
+        font-size: 1.05rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+      }
+      .pw-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin: 0 0 6px 0;
+        color: #fff;
+        letter-spacing: 0.2px;
+      }
+      .pw-desc {
+        color: #e0e6ed;
+        font-size: 1.05rem;
+        margin-bottom: 8px;
+        min-height: 48px;
+      }
+      .pw-meta {
+        display: flex;
+        gap: 18px;
+        font-size: 1rem;
+        color: #ffd600;
+        margin-bottom: 8px;
+      }
+      .pw-meta i {
+        margin-right: 6px;
+        color: #ffd600;
+      }
+      .pw-price {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #ffd600;
+        margin-bottom: 2px;
+      }
+      .price-original {
+        color: #e0e6ed;
+        text-decoration: line-through;
+        font-size: 1rem;
+        margin-left: 8px;
+        font-weight: 400;
+      }
+      .pw-btn {
+        background: linear-gradient(90deg, #ffd600 60%, #ffb800 100%);
+        color: #0a2540;
+        font-weight: 700;
+        border-radius: 12px;
+        border: none;
+        font-size: 1.08rem;
+        margin-top: 18px;
+        box-shadow: 0 2px 8px rgba(255,214,0,0.10);
+        transition: background 0.2s, color 0.2s;
+      }
+      .pw-btn:hover {
+        background: #fff;
+        color: #0a2540;
+        border: 2px solid #ffd600;
+      }
+      @media (max-width: 900px) {
+        .pw-courses-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 600px) {
+        .pw-courses-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .pw-course-content {
+          padding: 16px 10px 0 10px;
+        }
+        .pw-image-wrap {
+          height: 150px;
+        }
+      }
+    </style>
+    <script>
+      function toggleDropdown(id) {
+        // Hide all dropdowns first
+        document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+          if (menu.id !== id) menu.style.display = 'none';
+        });
+        var menu = document.getElementById(id);
+        if (menu) {
+          menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+      }
+      // Hide dropdown when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!event.target.closest('.dropdown')) {
+          document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+            menu.style.display = 'none';
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

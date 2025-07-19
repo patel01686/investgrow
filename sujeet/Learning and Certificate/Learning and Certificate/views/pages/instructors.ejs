@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head', { title: 'Instructors' }) %>
+  <body>
+    <a
+      href="/"
+      class="back-btn"
+      style="
+        position: fixed;
+        top: 18px;
+        left: 18px;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.85);
+        color: #1976d2;
+        padding: 8px 16px;
+        border-radius: 24px;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      "
+      ><span style="font-size: 18px; line-height: 1;">&#8592;</span></a
+    >
+    <%- include('../partials/header', { currentPage: 'instructors', user: user
+    }) %>
+    <main>
+      <section class="instructors">
+        <div class="container">
+          <div class="section-header">
+            <h1>Meet Our Instructors</h1>
+            <p>
+              Learn from industry experts with years of real-world experience in
+              programming, AI, cloud, and more.
+            </p>
+          </div>
+          <div class="instructors-grid">
+            <div class="instructor-card">
+              <div
+                class="instructor-photo"
+                style="background-image: url('/public/image/instructor1.jpg')"
+              ></div>
+              <div class="instructor-content">
+                <h3>Dr. Priya Sharma</h3>
+                <p class="instructor-title">AI & Machine Learning</p>
+                <p>
+                  PhD in Computer Science, 10+ years in AI research, published
+                  author, Kaggle Grandmaster.
+                </p>
+              </div>
+            </div>
+            <div class="instructor-card">
+              <div
+                class="instructor-photo"
+                style="background-image: url('/public/image/instructor2.jpg')"
+              ></div>
+              <div class="instructor-content">
+                <h3>Alex Kim</h3>
+                <p class="instructor-title">Cloud & DevOps</p>
+                <p>
+                  AWS Certified Solutions Architect, DevOps consultant, 8+ years
+                  in cloud infrastructure and automation.
+                </p>
+              </div>
+            </div>
+            <div class="instructor-card">
+              <div
+                class="instructor-photo"
+                style="background-image: url('/public/image/instructor3.jpg')"
+              ></div>
+              <div class="instructor-content">
+                <h3>Maria Garcia</h3>
+                <p class="instructor-title">Software Engineering</p>
+                <p>
+                  Full-stack engineer, ex-Google, 12+ years in web and backend
+                  development, mentor and speaker.
+                </p>
+              </div>
+            </div>
+            <div class="instructor-card">
+              <div
+                class="instructor-photo"
+                style="background-image: url('/public/image/instructor4.jpg')"
+              ></div>
+              <div class="instructor-content">
+                <h3>Rohan Patel</h3>
+                <p class="instructor-title">Cybersecurity</p>
+                <p>
+                  Certified Ethical Hacker, 9+ years in security, led red team
+                  operations for Fortune 500 companies.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <style>
+      .instructors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 32px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+      }
+      .instructor-card {
+        background: #fff;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 32px 28px 28px 28px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 24px;
+        transition: box-shadow 0.2s, transform 0.2s;
+        position: relative;
+      }
+      .instructor-card:hover {
+        box-shadow: 0 8px 32px rgba(37, 99, 235, 0.1);
+        transform: translateY(-4px) scale(1.02);
+      }
+      .instructor-photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        margin-right: 18px;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      }
+      .instructor-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .instructor-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 4px;
+        color: var(--primary-dark);
+      }
+      .instructor-title {
+        color: var(--secondary);
+        font-size: 1rem;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+      .instructor-card p {
+        color: var(--gray);
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+      @media (max-width: 768px) {
+        .instructors-grid {
+          grid-template-columns: 1fr;
+        }
+        .instructor-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .instructor-photo {
+          margin-bottom: 12px;
+          margin-right: 0;
+        }
+      }
+    </style>
+    <%- include('../partials/footer') %>
+  </body>
+</html>
