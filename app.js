@@ -9,11 +9,13 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // Another site hai ye
 app.use(express.static('public')); 
 app.use('/shop', express.static(__dirname + '/shop'));
 
-
+// Subfolder site: /portfolio
+app.use('/pro', express.static(path.join(__dirname, 'pro')));
 
 
 
