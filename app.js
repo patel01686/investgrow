@@ -13,6 +13,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public')); 
 app.use('/shop', express.static(__dirname + '/shop'));
 
+// Another site hai ye portfolio
+app.use(express.static('public')); 
+app.use('/nir', express.static(__dirname + '/nir'));
+
+
 
 // Home page
 app.get('/', (req, res) => res.render('home'));
