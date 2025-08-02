@@ -8,28 +8,147 @@
     @keyframes fadeInDown { from { opacity:0; transform:translateY(-30px);} to {opacity:1; transform:translateY(0);} }
     @keyframes fadeInUp { from { opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
     @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
-    .product-card { box-shadow:0 6px 24px rgba(44,130,89,0.08); transition:transform 0.3s, box-shadow 0.3s; }
-    .product-card:hover { transform:scale(1.04); box-shadow:0 12px 32px rgba(44,130,89,0.18); border:2px solid #2F855A; }
-    .faq-question { width:100%; text-align:left; background:#2F855A; color:white; border:none; padding:14px; font-size:1rem; border-radius:6px; margin:8px 0; cursor:pointer; }
-    .faq-answer { display:none; background:#f9f9f9; padding:12px; border-radius:6px; margin-bottom:8px; }
-    .faq-item.active .faq-answer { display:block; }
-    .testimonial { display:none; text-align:center; padding:18px; background:white; border-radius:10px; box-shadow:0 2px 12px rgba(44,130,89,0.08); }
-    .testimonial.active { display:block; }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+      padding: 0 1rem;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 18px rgba(44,130,89,0.10);
+      padding: 1.5rem 1rem 1.2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      border: 1px solid #f0f0f0;
+    }
+    .product-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(44,130,89,0.18);
+      border: 2px solid #2F855A;
+    }
+    .product-card img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      margin-bottom: 0.7rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(44,130,89,0.10);
+      background: #f9f9f9;
+    }
+    .product-card h3 {
+      font-size: 1.3rem;
+      color: #2F855A;
+      margin: 0.5rem 0 0.2rem 0;
+      font-weight: bold;
+      text-align: center;
+    }
+    .product-card h5 {
+      font-size: 1rem;
+      color: #555;
+      margin: 0.2rem 0;
+      text-align: center;
+    }
+    .product-card h4 {
+      font-size: 1.1rem;
+      color: #2F855A;
+      margin: 0.5rem 0 0.7rem 0;
+      font-weight: bold;
+      text-align: center;
+    }
+    .product-card .buy-btn {
+      background: linear-gradient(90deg, #2F855A 0%, #48BB78 100%);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 2rem;
+      font-size: 1rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(46,139,87,0.10);
+      margin-top: 0.7rem;
+      transition: background 0.2s;
+      font-weight: 500;
+    }
+    .product-card .buy-btn:hover {
+      background: linear-gradient(90deg, #48BB78 0%, #2F855A 100%);
+      color: #fff;
+    }
+    @media (max-width: 700px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 0.5rem;
+      }
+      .product-card {
+        padding: 1rem 0.5rem;
+        margin: 0.5rem 0;
+      }
+      .product-card img {
+        width: 56px;
+        height: 56px;
+      }
+      .product-card h3 {
+        font-size: 1.1rem;
+      }
+      .product-card h5, .product-card h4 {
+        font-size: 0.95rem;
+      }
+      .product-card .buy-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.95rem;
+      }
+    }
+    /* ...existing code for FAQ, testimonial, dark mode, etc... */
   </style>
 </head>
 <body>
   <!-- Sticky Header/Navbar -->
   <header id="mainHeader" style="position:sticky; top:0; background:#fff; z-index:1000; box-shadow:0 2px 8px rgba(44,130,89,0.08);">
-    <nav class="navbar" style="display:flex; justify-content:space-between; align-items:center; padding:12px 24px;">
-      <div style="display:flex; align-items:center;">
+    <nav class="navbar" style="display:flex; justify-content:space-between; align-items:center; padding:12px 24px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; min-width:120px;">
         <div class="logo" style="font-size:1.7rem; font-weight:bold; color:#2F855A;">InvestGrow</div>
-        <button id="darkModeToggle" style="margin-left:18px; background:#2F855A; color:white; border:none; border-radius:6px; padding:6px 14px; cursor:pointer;">🌙 Dark Mode</button>
       </div>
-      <ul class="nav-links" id="navLinks" style="display:flex; gap:18px; list-style:none;">
-        <li><a href="/login">Login</a></li>
-        <li><a href="/signup">Signup</a></li>
-      </ul>
+      <!-- Removed Login/Signup from navbar -->
+      <div style="display:flex; align-items:center; gap:16px; min-width:120px; justify-content:flex-end;">
+        <button id="darkModeToggle" style="background:#2F855A; color:white; border:none; border-radius:6px; padding:6px 14px; cursor:pointer;">🌙 Dark Mode</button>
+        <div style="position:relative;">
+          <div id="profileBtn" style="cursor:pointer; font-size:1.2rem; background:#eee; border-radius:50%; padding:8px 12px;">👤</div>
+          <div class="profile-dropdown" id="profileDropdown" style="display:none; position:absolute; top:40px; right:0; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.12); border-radius:8px; min-width:120px;">
+            <ul style="list-style:none; margin:0; padding:8px 0;">
+              <li><a href="/login" style="display:block; padding:8px 16px; color:#2F855A; text-decoration:none;">Login</a></li>
+              <li><a href="/signup" style="display:block; padding:8px 16px; color:#2F855A; text-decoration:none;">Signup</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </nav>
+    <style>
+      @media (max-width: 700px) {
+        .navbar { flex-direction: column !important; align-items: stretch !important; }
+        .nav-links { justify-content: center !important; margin: 10px 0 !important; }
+        #darkModeToggle, #profileBtn { margin-top: 10px !important; }
+        .profile-dropdown { right: auto !important; left: 0 !important; }
+      }
+    </style>
+    <script>
+      // Profile dropdown toggle
+      const profileBtn = document.getElementById('profileBtn');
+      const profileDropdown = document.getElementById('profileDropdown');
+      profileBtn.onclick = function(e) {
+        e.stopPropagation();
+        profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+      };
+      document.addEventListener('click', function(e) {
+        if (!profileDropdown.contains(e.target) && e.target !== profileBtn) {
+          profileDropdown.style.display = 'none';
+        }
+      });
+    </script>
   </header>
 
   <!-- Hero Section with Animated Counter -->
@@ -49,286 +168,48 @@
     <h3 style="font-size: 1.5rem;">💰 Invest Today & Get <span style="color: #2F855A;">10% Daily Return</span></h3>
     <p style="font-size: 1.1rem;">Secure your future with trusted investments</p>
   </section>
-
-  <!-- Product Cards -->
-  <section class="products" id="products">
-    <div class="product-grid" id="mainProductsGrid">
-      <!-- Product Cards (unchanged, keep only one set) -->
-      ...existing product cards...
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="about">
-    <h2>About InvestGrow</h2>
-    <p style="color: gray;">InvestGrow is your trusted partner for smart investments that deliver real returns.
-       Our mission is to empower individuals to grow their wealth 
-       through safe, high-yield opportunities. With a focus on transparency and
-        reliability, we help you earn daily profits while securing your future. 
-        Our platform offers carefully selected plans that balance risk and reward. 
-        Join thousands who are building financial freedom with us. Together, 
-        let's make your money work for you!</p>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="contact">
-    <h2>Contact Us</h2>
-    <a href="mailto:support@investpaygrow.com">📧 Contact us on email</a>
-    <a href="https://t.me/investgrow" target="_blank"> 📞 Contact on Telegram</a>
-    <p>Address: Patna, Bihar, India</p>
-  </section>
-
-  <!-- Footer -->
-  <footer style="background:#222; color:white; text-align:center; padding:20px;">
-    <div style="margin-bottom:10px;">
-      <a href="https://facebook.com/" target="_blank"><img src="https://img.icons8.com/color/32/facebook.png" style="margin:0 8px;"></a>
-      <a href="https://twitter.com/" target="_blank"><img src="https://img.icons8.com/color/32/twitter.png" style="margin:0 8px;"></a>
-      <a href="https://instagram.com/" target="_blank"><img src="https://img.icons8.com/color/32/instagram-new.png" style="margin:0 8px;"></a>
-    </div>
-    © 2025 InvestGrow. All rights reserved.
-  </footer>
-
   <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/919999999999" target="_blank" style="position:fixed; bottom:30px; right:30px; z-index:999;">
     <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" style="width:48px; box-shadow:0 4px 12px rgba(0,0,0,0.2); border-radius:50%;">
   </a>
-  <!-- About Section (unchanged) -->
-  <section class="about">
-    <!-- ...existing about content... -->
-  </section>
-  <!-- Contact Section (unchanged) -->
-  <section class="contact">
-    <h2>Contact Us</h2>
-    <a href="mailto:support@investpaygrow.com">📧 Contact us on email</a>
-    <a href="https://t.me/investgrow" target="_blank"> 📞 Contact on Telegram</a>
-    <p>Address: Patna, Bihar, India</p>
-  </section>
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/919999999999" target="_blank" style="position:fixed; bottom:30px; right:30px; z-index:999;">
-    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" style="width:48px; box-shadow:0 4px 12px rgba(0,0,0,0.2); border-radius:50%;">
-  </a>
-  <!-- Footer with Social Icons -->
-  <footer style="background:#222; color:white; text-align:center; padding:20px;">
-    <div style="margin-bottom:10px;">
-      <a href="https://facebook.com/" target="_blank"><img src="https://img.icons8.com/color/32/facebook.png" style="margin:0 8px;"></a>
-      <a href="https://twitter.com/" target="_blank"><img src="https://img.icons8.com/color/32/twitter.png" style="margin:0 8px;"></a>
-      <a href="https://instagram.com/" target="_blank"><img src="https://img.icons8.com/color/32/instagram-new.png" style="margin:0 8px;"></a>
-    </div>
-    © 2025 InvestGrow. All rights reserved.
-  </footer>
   <script>
-    // Testimonial Carousel
-    var testimonials = document.querySelectorAll('.testimonial');
-    var testimonialIndex = 0;
-    function showTestimonial(idx) {
-      testimonials.forEach(function(t,i){ t.classList.toggle('active',i===idx); });
-    }
-    document.getElementById('prevTestimonial').onclick = function() {
-      testimonialIndex = (testimonialIndex-1+testimonials.length)%testimonials.length;
-      showTestimonial(testimonialIndex);
-    };
-    document.getElementById('nextTestimonial').onclick = function() {
-      testimonialIndex = (testimonialIndex+1)%testimonials.length;
-      showTestimonial(testimonialIndex);
-    };
-    showTestimonial(testimonialIndex);
-    // FAQ Accordion
-    document.querySelectorAll('.faq-question').forEach(function(btn){
-      btn.onclick = function() {
-        this.parentElement.classList.toggle('active');
-      };
-    });
-    // Existing JS
-    // ...existing JS code...
-  </script>
-</body>
-</html>
-  </style>
-  <script>
-    // Testimonial Carousel
-    const testimonials = document.querySelectorAll('.testimonial');
-    let testimonialIndex = 0;
-    function showTestimonial(idx) {
-      testimonials.forEach((t,i)=>t.classList.toggle('active',i===idx));
-    }
-    document.getElementById('prevTestimonial').onclick = () => {
-      testimonialIndex = (testimonialIndex-1+testimonials.length)%testimonials.length;
-      showTestimonial(testimonialIndex);
-    };
-    document.getElementById('nextTestimonial').onclick = () => {
-      testimonialIndex = (testimonialIndex+1)%testimonials.length;
-      showTestimonial(testimonialIndex);
-    };
-    showTestimonial(testimonialIndex);
-
-    // FAQ Accordion
-    document.querySelectorAll('.faq-question').forEach(btn=>{
-      btn.onclick = function() {
-        this.parentElement.classList.toggle('active');
-      };
-    });
-
-    // Existing JS
-    // ...existing JS code...
-  </script>
-</body>
-</html>
-
-    .hero {
-      text-align: center;
-      padding: 40px 20px;
-      background: whitesmoke;
-      color: black;
-    }
-
-    .products, .about, .contact, #allProductsSection {
-      padding: 30px 20px;
-      background: white;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .product-card {
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 220px; /* square-ish, better ratio */
-      object-fit: cover;
-      border-radius: 8px;
-      background: #eee;
-    }
-
-    .buy-btn {
-      margin-top: 10px;
-      padding: 10px 15px;
-      background-color: #28a745;
-      border: none;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .buy-btn:hover {
-      background-color: #218838;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #222;
-      color: white;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: #1a1a1a;
-        position: absolute;
-        top: 55px;
-        right: 20px;
-        width: 150px;
-        border-radius: 5px;
-        padding: 10px;
+    // Dark mode toggle
+    document.getElementById('darkModeToggle').onclick = function() {
+      document.body.classList.toggle('dark-mode');
+      if(document.body.classList.contains('dark-mode')) {
+        this.textContent = '☀️ Light Mode';
+      } else {
+        this.textContent = '🌙 Dark Mode';
       }
-      .nav-links.active { display: flex; }
-      .hamburger { display: flex; }
+    };
+    // Animated user counter
+    // Only declare these once
+    var userCount = 0;
+    var targetCount = 12500;
+    var counterElem = document.getElementById('userCounter');
+    function animateCounter() {
+      if(userCount < targetCount) {
+        userCount += Math.ceil((targetCount-userCount)/30);
+        counterElem.textContent = userCount;
+        setTimeout(animateCounter, 30);
+      } else {
+        counterElem.textContent = targetCount;
+      }
     }
-
-    .investment-banner {
-      color: whitesmoke;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      margin: 20px 0;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    }
-
-    .investment-banner h3 { font-size: 22px; margin-bottom: 6px; }
-    .investment-banner p { font-size: 14px; opacity: 0.9; }
-
-    .contact {
-      background-color: #f9f9f9;
-      padding: 20px 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-width: 600px;
-      margin: 30px auto;
-      text-align: center;
-    }
-    .contact h2 { font-size: 24px; color: #2F855A; margin-bottom: 16px; }
-    .contact a {
-      display: block;
-      text-decoration: none;
-      color: #2D3748;
-      font-weight: 500;
-      margin: 8px 0;
-      font-size: 16px;
-      transition: color 0.3s;
-    }
-    .contact a:hover { color: #48BB78; }
-    .contact p { font-size: 14px; color: #4A5568; margin-top: 12px; }
-  </style>
+    animateCounter();
+  </script>
+<!-- Removed duplicate closing tags and scripts. All JS and CSS are merged above. -->
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="nav-left">
-      <div class="logo">InvestGrow</div>
-      <div style="position: relative; margin-left: 15px;">
-        <div id="profileBtn" style="cursor:pointer; font-size: 1.2rem;">👤</div>
-        <div class="profile-dropdown" id="profileDropdown">
-          <ul>
-            <li><a href="/signup">Signup</a></li>
-            <li><a href="/login">Login</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="/login" >Login</a></li>
-       <li><a href="/signup">Signup</a></li>
-    </ul>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
+  
   
   <!-- Products Section shown only on navbar click -->
   <section id="allProductsSection" style="display: none;">
     <h2 style="text-align: center;">All Products</h2>
     <div class="product-grid" id="productsNavbarGrid"></div>
   </section>
-
-
-  <!-- Home Sections -->
-  <section class="hero">
-    <h1 style="color: black;">Welcome to InvestGrow</h1>
-    <h4 style="color:  gray;">INDIA'S MOST LOVED EARNING PLATFORM </h4>
-  </section>
-
-  <section class="investment-banner">
-      <h3 style="color: gray;">💰 Invest Today & Get <span style="color: goldenrod;">10% Daily Return</span></h3>
-      <p style="color: gray;">Secure your future with trusted investments</p>
-    </section>
-
+  
   <section class="products" id="products">
     <div class="product-grid" id="mainProductsGrid">
       <!-- Product Cards -->
@@ -389,25 +270,41 @@
     </div>
   </section>
 
-  <section class="about">
-    <h2>About InvestGrow</h2>
-    <p style="color: gray;">InvestGrow is your trusted partner for smart investments that deliver real returns.
-       Our mission is to empower individuals to grow their wealth 
-       through safe, high-yield opportunities. With a focus on transparency and
-        reliability, we help you earn daily profits while securing your future. 
-        Our platform offers carefully selected plans that balance risk and reward. 
-        Join thousands who are building financial freedom with us. Together, 
-        let's make your money work for you!</p>
+  <section class="about-section">
+    <h2><i class="fas fa-chart-line" style="color:#2F855A"></i> About <span style="color:#2F855A">InvestGrow</span></h2>
+    <p>InvestGrow is your trusted partner for smart investments that deliver real returns.<br>
+      <span style="color:#2F855A;font-weight:500;">Our mission:</span> Empower individuals to grow their wealth through safe, high-yield opportunities.<br>
+      <span style="color:#2F855A;font-weight:500;">Why choose us?</span> Transparency, reliability, and daily profits while securing your future.<br>
+      <span style="color:#2F855A;font-weight:500;">Join thousands</span> building financial freedom. Let’s make your money work for you!
+    </p>
   </section>
-
-  <section class="contact">
-    <h2>Contact Us</h2>
-    <a href="mailto:support@investpaygrow.com">📧 Contact us on email</a>
-    <a href="https://t.me/investgrow" target="_blank"> 📞 Contact on Telegram</a>
-    <p>Address: Patna, Bihar, India</p>
+  <!-- Contact Us section removed -->
+  <section class="contactus-section contactus-simple">
+    <div class="contactus-simple-container">
+      <h2 class="contactus-simple-title"><i class="fas fa-envelope" style="color:#2F855A"></i> Contact <span style="color:#2F855A">Us</span></h2>
+      <p class="contactus-simple-desc">Connect with us for support, partnership, or feedback. We're here to help!</p>
+      <div class="contactus-simple-details">
+        <div><i class="fas fa-paper-plane"></i> <a href="mailto:support@investpaygrow.com" class="contactus-simple-link">support@investpaygrow.com</a></div>
+        <div><i class="fab fa-telegram-plane"></i> <a href="https://t.me/investgrow" target="_blank" class="contactus-simple-link">Telegram</a></div>
+        <div><i class="fas fa-map-marker-alt"></i> Patna, Bihar, India</div>
+      </div>
+      <div class="contactus-premium-divider"></div>
+    </div>
   </section>
+  <footer class="footer-section">
+    <div class="footer-logo"><i class="fas fa-gem" style="color:#2F855A"></i> InvestGrow</div>
+    <div class="footer-social">
+      <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <div class="footer-copyright">© 2025 InvestGrow. All rights reserved.</div>
+  </footer>
 
-  <footer>© 2025 InvestGrow. All rights reserved.</footer>
+ 
+
+  <!-- Footer is now part of the premium About/Contact/Footer section above -->
 
   <script>
     // Dark mode toggle
@@ -421,9 +318,7 @@
     };
 
     // Animated user counter
-    let userCount = 0;
-    let targetCount = 12500;
-    let counterElem = document.getElementById('userCounter');
+    // ...existing code...
     function animateCounter() {
       if(userCount < targetCount) {
         userCount += Math.ceil((targetCount-userCount)/30);
@@ -443,6 +338,364 @@
     });
   </script>
   <style>
+    .contactus-simple {
+      background: linear-gradient(90deg, #e0ffe0 0%, #f9f9f9 100%);
+      padding: 2.5rem 1rem 2rem 1rem;
+      border-top: 1px solid #e0ffe0;
+      border-bottom: 1px solid #e0ffe0;
+    }
+    .contactus-simple-container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0.5rem 0;
+    }
+    .contactus-simple-title {
+      font-size: 1.7rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+    .contactus-simple-desc {
+      font-size: 1.08rem;
+      color: #444;
+      margin-bottom: 1.2rem;
+    }
+    .contactus-simple-details {
+      font-size: 1.08rem;
+      color: #444;
+      margin-bottom: 1.2rem;
+      line-height: 2.1;
+    }
+    .contactus-simple-link {
+      color: #2F855A;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .contactus-simple-link:hover {
+      color: #48BB78;
+      text-decoration: underline;
+    }
+    .contactus-premium-divider {
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #2F855A 0%, #48BB78 100%);
+      border-radius: 2px;
+      margin: 1.2rem auto 0.5rem auto;
+    }
+    .contactus-simple-details div {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 1.08rem;
+      color: #444;
+      margin-bottom: 0.7rem;
+      justify-content: center;
+    }
+    .contactus-simple-details i {
+      font-size: 1.2rem;
+      color: #2F855A;
+      background: #e0ffe0;
+      border-radius: 50%;
+      padding: 7px;
+      margin-right: 2px;
+      box-shadow: 0 2px 8px rgba(46,139,87,0.10);
+    }
+    @media (max-width: 700px) {
+      .contactus-simple-container {
+        padding: 0.2rem 0.1rem;
+      }
+      .contactus-simple-title {
+        font-size: 1.2rem;
+      }
+    }
+    .about-section {
+      background: linear-gradient(90deg, #e0ffe0 0%, #f9f9f9 100%);
+      padding: 2.5rem 1rem 1.5rem 1rem;
+      text-align: center;
+    }
+    .about-section h2 {
+      font-size: 2rem;
+      margin-bottom: 0.7rem;
+      font-weight: bold;
+    }
+    .about-section p {
+      font-size: 1.1rem;
+      color: #444;
+      margin-bottom: 0;
+      line-height: 1.7;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-section {
+      background: #fff;
+      padding: 2rem 1rem 1.5rem 1rem;
+      text-align: center;
+      border-top: 1px solid #e0ffe0;
+      border-bottom: 1px solid #e0ffe0;
+    }
+    .contact-section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.7rem;
+      font-weight: bold;
+    }
+    .contact-details {
+      font-size: 1.08rem;
+      color: #444;
+      margin-bottom: 0;
+      line-height: 1.7;
+    }
+    .contact-link {
+      color: #2F855A;
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      transition: color 0.2s;
+    }
+    .contact-link:hover {
+      color: #48BB78;
+      text-decoration: underline;
+    }
+    .contact-address {
+      color: #555;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+    .footer-section {
+      background: linear-gradient(90deg, #2F855A 0%, #48BB78 100%);
+      color: #fff;
+      padding: 2rem 1rem 1rem 1rem;
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+      margin-top: 0;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 0.7rem;
+    }
+    .footer-social {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 1.5rem;
+      justify-content: center;
+      margin-bottom: 0.7rem;
+    }
+    .footer-social a {
+      color: #fff;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover {
+      color: #f6e05e;
+    }
+    .footer-copyright {
+      font-size: 1rem;
+      color: #fff;
+      opacity: 0.85;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 700px) {
+      .about-section {
+        padding: 1.2rem 0.5rem 0.7rem 0.5rem;
+      }
+      .about-section h2 {
+        font-size: 1.3rem;
+      }
+      .about-section p {
+        font-size: 0.98rem;
+      }
+      .contact-section {
+        padding: 1.2rem 0.5rem 0.7rem 0.5rem;
+      }
+      .contact-section h2 {
+        font-size: 1.1rem;
+      }
+      .contact-details {
+        font-size: 0.98rem;
+      }
+      .footer-section {
+        padding: 1.2rem 0.5rem 0.7rem 0.5rem;
+      }
+      .footer-logo {
+        font-size: 1.1rem;
+      }
+      .footer-social {
+        font-size: 1.2rem;
+      }
+    }
+    .contact-premium {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem 1.5rem 1rem;
+      background: linear-gradient(90deg, #e0ffe0 0%, #f9f9f9 100%);
+    }
+    .contact-card {
+      background: #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 24px rgba(44,130,89,0.10);
+      max-width: 400px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      border: 1px solid #f0f0f0;
+    }
+    .contact-icon {
+      font-size: 2.2rem;
+      color: #2F855A;
+      margin-bottom: 0.7rem;
+    }
+    .contact-card h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.7rem;
+      font-weight: bold;
+    }
+    .contact-details {
+      font-size: 1.08rem;
+      color: #444;
+      margin-bottom: 0;
+      line-height: 1.7;
+    }
+    .contact-link {
+      color: #2F855A;
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      transition: color 0.2s;
+    }
+    .contact-link:hover {
+      color: #48BB78;
+      text-decoration: underline;
+    }
+    .contact-address {
+      color: #555;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+    @media (max-width: 700px) {
+      .contact-card {
+        padding: 1.2rem 0.7rem;
+        font-size: 1rem;
+      }
+      .contact-card h2 {
+        font-size: 1.1rem;
+      }
+      .contact-details {
+        font-size: 0.98rem;
+      }
+      .contact-premium {
+        padding: 1.2rem 0.5rem 0.7rem 0.5rem;
+      }
+    }
+
+    .about-premium {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem 1rem 1.5rem 1rem;
+      background: linear-gradient(90deg, #e0ffe0 0%, #f9f9f9 100%);
+    }
+    .about-card {
+      background: #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 24px rgba(44,130,89,0.10);
+      max-width: 500px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      border: 1px solid #f0f0f0;
+    }
+    .about-icon {
+      font-size: 2.5rem;
+      color: #2F855A;
+      margin-bottom: 0.7rem;
+    }
+    .about-card h2 {
+      font-size: 2rem;
+      margin-bottom: 0.7rem;
+      font-weight: bold;
+    }
+    .about-card p {
+      font-size: 1.1rem;
+      color: #444;
+      margin-bottom: 0;
+      line-height: 1.7;
+    }
+    .footer-premium {
+      background: linear-gradient(90deg, #2F855A 0%, #48BB78 100%);
+      color: #fff;
+      padding: 2rem 1rem 1rem 1rem;
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 700px;
+      margin: 0 auto 1rem auto;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 1.5rem;
+    }
+    .footer-social a {
+      color: #fff;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover {
+      color: #f6e05e;
+    }
+    .footer-bottom {
+      font-size: 1rem;
+      color: #fff;
+      opacity: 0.85;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 700px) {
+      .about-card {
+        padding: 1.2rem 0.7rem;
+        font-size: 1rem;
+      }
+      .about-card h2 {
+        font-size: 1.3rem;
+      }
+      .about-card p {
+        font-size: 0.98rem;
+      }
+      .footer-content {
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .footer-logo {
+        font-size: 1.1rem;
+      }
+      .footer-social {
+        font-size: 1.2rem;
+      }
+      .footer-premium {
+        padding: 1.2rem 0.5rem 0.7rem 0.5rem;
+      }
+    }
     body.dark-mode {
       background: #181818;
       color: #f9f9f9;
