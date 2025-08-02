@@ -1,31 +1,35 @@
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 const User = require('./models/user');
-require('./db');
 
 const app = express();
+
+// ✅ Final MongoDB URI with real credentials
+const mongoURI = 'mongodb+srv://niranjan:patel@cluster0.mrhd61k.mongodb.net/investgrow?retryWrites=true&w=majority&appName=Cluster0';
+
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ MongoDB Connected"))
+.catch((err) => console.log("❌ MongoDB Connection Error:", err));
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-// Another site hai ye
-app.use(express.static('public')); 
+// Static folders
+app.use(express.static('public'));
 app.use('/shop', express.static(__dirname + '/shop'));
-
-// Subfolder site: /portfolio
 app.use('/pro', express.static(path.join(__dirname, 'pro')));
 
-
-
-// Home page
+// Routes
 app.get('/', (req, res) => res.render('home'));
 
-// Signup page
 app.get('/signup', (req, res) => res.render('signup'));
 
-// Signup POST
 app.post('/signup', async (req, res) => {
   const { username, password, Mobile_No } = req.body;
 
@@ -43,11 +47,8 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-
-// Login page
 app.get('/login', (req, res) => res.render('login'));
 
-// Login POST
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -64,7 +65,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
-
