@@ -1,72 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>InvestGrow - Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InvestGrow - Premium Earning Platform</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f8f8f8;
-    }
+    @keyframes fadeInDown { from { opacity:0; transform:translateY(-30px);} to {opacity:1; transform:translateY(0);} }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
+    @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+    .product-card { box-shadow:0 6px 24px rgba(44,130,89,0.08); transition:transform 0.3s, box-shadow 0.3s; }
+    .product-card:hover { transform:scale(1.04); box-shadow:0 12px 32px rgba(44,130,89,0.18); border:2px solid #2F855A; }
+    .faq-question { width:100%; text-align:left; background:#2F855A; color:white; border:none; padding:14px; font-size:1rem; border-radius:6px; margin:8px 0; cursor:pointer; }
+    .faq-answer { display:none; background:#f9f9f9; padding:12px; border-radius:6px; margin-bottom:8px; }
+    .faq-item.active .faq-answer { display:block; }
+    .testimonial { display:none; text-align:center; padding:18px; background:white; border-radius:10px; box-shadow:0 2px 12px rgba(44,130,89,0.08); }
+    .testimonial.active { display:block; }
+  </style>
+</head>
+<body>
+  <!-- Sticky Header/Navbar -->
+  <header id="mainHeader" style="position:sticky; top:0; background:#fff; z-index:1000; box-shadow:0 2px 8px rgba(44,130,89,0.08);">
+    <nav class="navbar" style="display:flex; justify-content:space-between; align-items:center; padding:12px 24px;">
+      <div style="display:flex; align-items:center;">
+        <div class="logo" style="font-size:1.7rem; font-weight:bold; color:#2F855A;">InvestGrow</div>
+        <button id="darkModeToggle" style="margin-left:18px; background:#2F855A; color:white; border:none; border-radius:6px; padding:6px 14px; cursor:pointer;">🌙 Dark Mode</button>
+      </div>
+      <ul class="nav-links" id="navLinks" style="display:flex; gap:18px; list-style:none;">
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Signup</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #2F855A;
-      padding: 10px 20px;
-      color: whitesmoke;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-left { display: flex; align-items: center; }
-    .logo { font-size: 1.6rem; font-weight: bold; color: whitesmoke; }
-    .profile-dropdown {
-      display: none;
-      position: absolute;
-      top: 35px;
-      right: 0;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      z-index: 1000;
-    }
-    .profile-dropdown ul { list-style: none; margin: 0; padding: 5px 0; }
-    .profile-dropdown li { padding: 8px 15px; }
-    .profile-dropdown li a { text-decoration: none; color: black; }
+  <!-- Hero Section with Animated Counter -->
+  <section class="hero" style="background: linear-gradient(90deg, #2F855A 0%, #48BB78 100%); color: white; position: relative; padding: 40px 0 30px 0; text-align:center;">
+    <h1 style="font-size: 2.8rem; font-weight: bold; margin-bottom: 10px; animation: fadeInDown 1s;">Welcome to <span style="color:goldenrod;">InvestGrow</span></h1>
+    <h4 style="color: #f9f9f9; font-size: 1.3rem; animation: fadeInUp 1.2s;">INDIA'S MOST LOVED EARNING PLATFORM</h4>
+    <div style="margin-top:22px;">
+      <span style="font-size:1.2rem;">Total Users: <span id="userCounter" style="font-weight:bold; color:goldenrod;">0</span>+</span>
+    </div>
+    <div style="position: absolute; right: 30px; bottom: 10px;">
+      <img src="https://img.icons8.com/color/96/000000/money-bag.png" alt="Money Bag" style="width:60px; animation: bounce 2s infinite;">
+    </div>
+  </section>
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-    }
-    .nav-links li a {
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      padding: 8px 12px;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-    }
-    .nav-links li a:hover {
-      background-color: #ffffff;
-      color: #1a1a1a;
-    }
+  <!-- Investment Banner -->
+  <section class="investment-banner" style="background: linear-gradient(90deg, #f6e05e 0%, #f9f9f9 100%); color: #2F855A; text-align:center; padding:18px 0;">
+    <h3 style="font-size: 1.5rem;">💰 Invest Today & Get <span style="color: #2F855A;">10% Daily Return</span></h3>
+    <p style="font-size: 1.1rem;">Secure your future with trusted investments</p>
+  </section>
 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
+  <!-- Product Cards -->
+  <section class="products" id="products">
+    <div class="product-grid" id="mainProductsGrid">
+      <!-- Product Cards (unchanged, keep only one set) -->
+      ...existing product cards...
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>About InvestGrow</h2>
+    <p style="color: gray;">InvestGrow is your trusted partner for smart investments that deliver real returns.
+       Our mission is to empower individuals to grow their wealth 
+       through safe, high-yield opportunities. With a focus on transparency and
+        reliability, we help you earn daily profits while securing your future. 
+        Our platform offers carefully selected plans that balance risk and reward. 
+        Join thousands who are building financial freedom with us. Together, 
+        let's make your money work for you!</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <a href="mailto:support@investpaygrow.com">📧 Contact us on email</a>
+    <a href="https://t.me/investgrow" target="_blank"> 📞 Contact on Telegram</a>
+    <p>Address: Patna, Bihar, India</p>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background:#222; color:white; text-align:center; padding:20px;">
+    <div style="margin-bottom:10px;">
+      <a href="https://facebook.com/" target="_blank"><img src="https://img.icons8.com/color/32/facebook.png" style="margin:0 8px;"></a>
+      <a href="https://twitter.com/" target="_blank"><img src="https://img.icons8.com/color/32/twitter.png" style="margin:0 8px;"></a>
+      <a href="https://instagram.com/" target="_blank"><img src="https://img.icons8.com/color/32/instagram-new.png" style="margin:0 8px;"></a>
+    </div>
+    © 2025 InvestGrow. All rights reserved.
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/919999999999" target="_blank" style="position:fixed; bottom:30px; right:30px; z-index:999;">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" style="width:48px; box-shadow:0 4px 12px rgba(0,0,0,0.2); border-radius:50%;">
+  </a>
+  <!-- About Section (unchanged) -->
+  <section class="about">
+    <!-- ...existing about content... -->
+  </section>
+  <!-- Contact Section (unchanged) -->
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <a href="mailto:support@investpaygrow.com">📧 Contact us on email</a>
+    <a href="https://t.me/investgrow" target="_blank"> 📞 Contact on Telegram</a>
+    <p>Address: Patna, Bihar, India</p>
+  </section>
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/919999999999" target="_blank" style="position:fixed; bottom:30px; right:30px; z-index:999;">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" style="width:48px; box-shadow:0 4px 12px rgba(0,0,0,0.2); border-radius:50%;">
+  </a>
+  <!-- Footer with Social Icons -->
+  <footer style="background:#222; color:white; text-align:center; padding:20px;">
+    <div style="margin-bottom:10px;">
+      <a href="https://facebook.com/" target="_blank"><img src="https://img.icons8.com/color/32/facebook.png" style="margin:0 8px;"></a>
+      <a href="https://twitter.com/" target="_blank"><img src="https://img.icons8.com/color/32/twitter.png" style="margin:0 8px;"></a>
+      <a href="https://instagram.com/" target="_blank"><img src="https://img.icons8.com/color/32/instagram-new.png" style="margin:0 8px;"></a>
+    </div>
+    © 2025 InvestGrow. All rights reserved.
+  </footer>
+  <script>
+    // Testimonial Carousel
+    var testimonials = document.querySelectorAll('.testimonial');
+    var testimonialIndex = 0;
+    function showTestimonial(idx) {
+      testimonials.forEach(function(t,i){ t.classList.toggle('active',i===idx); });
     }
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background: white;
+    document.getElementById('prevTestimonial').onclick = function() {
+      testimonialIndex = (testimonialIndex-1+testimonials.length)%testimonials.length;
+      showTestimonial(testimonialIndex);
+    };
+    document.getElementById('nextTestimonial').onclick = function() {
+      testimonialIndex = (testimonialIndex+1)%testimonials.length;
+      showTestimonial(testimonialIndex);
+    };
+    showTestimonial(testimonialIndex);
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(function(btn){
+      btn.onclick = function() {
+        this.parentElement.classList.toggle('active');
+      };
+    });
+    // Existing JS
+    // ...existing JS code...
+  </script>
+</body>
+</html>
+  </style>
+  <script>
+    // Testimonial Carousel
+    const testimonials = document.querySelectorAll('.testimonial');
+    let testimonialIndex = 0;
+    function showTestimonial(idx) {
+      testimonials.forEach((t,i)=>t.classList.toggle('active',i===idx));
     }
+    document.getElementById('prevTestimonial').onclick = () => {
+      testimonialIndex = (testimonialIndex-1+testimonials.length)%testimonials.length;
+      showTestimonial(testimonialIndex);
+    };
+    document.getElementById('nextTestimonial').onclick = () => {
+      testimonialIndex = (testimonialIndex+1)%testimonials.length;
+      showTestimonial(testimonialIndex);
+    };
+    showTestimonial(testimonialIndex);
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(btn=>{
+      btn.onclick = function() {
+        this.parentElement.classList.toggle('active');
+      };
+    });
+
+    // Existing JS
+    // ...existing JS code...
+  </script>
+</body>
+</html>
 
     .hero {
       text-align: center;
@@ -304,42 +410,62 @@
   <footer>© 2025 InvestGrow. All rights reserved.</footer>
 
   <script>
-    const profileBtn = document.getElementById('profileBtn');
-    const profileDropdown = document.getElementById('profileDropdown');
-    profileBtn.onclick = () => {
-      profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+    // Dark mode toggle
+    document.getElementById('darkModeToggle').onclick = function() {
+      document.body.classList.toggle('dark-mode');
+      if(document.body.classList.contains('dark-mode')) {
+        this.textContent = '☀️ Light Mode';
+      } else {
+        this.textContent = '🌙 Dark Mode';
+      }
     };
 
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.onclick = () => {
-      navLinks.classList.toggle('active');
-    };
-
-    const productsNavbarGrid = document.getElementById('productsNavbarGrid');
-    const mainProductsGrid = document.getElementById('mainProductsGrid');
-
-    function populateProducts() {
-      productsNavbarGrid.innerHTML = '';
-      const productCards = mainProductsGrid.querySelectorAll('.product-card');
-      productCards.forEach(card => {
-        const clone = card.cloneNode(true);
-        productsNavbarGrid.appendChild(clone);
-      });
-      attachBuyButtonHandlers(); // ✅ Attach events to cloned buttons
+    // Animated user counter
+    let userCount = 0;
+    let targetCount = 12500;
+    let counterElem = document.getElementById('userCounter');
+    function animateCounter() {
+      if(userCount < targetCount) {
+        userCount += Math.ceil((targetCount-userCount)/30);
+        counterElem.textContent = userCount;
+        setTimeout(animateCounter, 30);
+      } else {
+        counterElem.textContent = targetCount;
+      }
     }
+    animateCounter();
 
-    function attachBuyButtonHandlers() {
-      const buyButtons = document.querySelectorAll('.buy-btn');
-      buyButtons.forEach(btn => {
-        btn.onclick = () => {
-          window.location.href = '/login';
-        };
-      });
-    }
-
-    attachBuyButtonHandlers(); // ✅ Run once on load
-
+    // Buy button handler
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+      btn.onclick = () => {
+        window.location.href = '/login';
+      };
+    });
   </script>
+  <style>
+    body.dark-mode {
+      background: #181818;
+      color: #f9f9f9;
+    }
+    body.dark-mode .product-card,
+    body.dark-mode .about,
+    body.dark-mode .contact,
+    body.dark-mode .investment-banner {
+      background: #23272A;
+      color: #f9f9f9;
+    }
+    body.dark-mode .navbar,
+    body.dark-mode header {
+      background: #23272A !important;
+      color: #f9f9f9;
+    }
+    body.dark-mode footer {
+      background: #181818 !important;
+      color: #f9f9f9;
+    }
+    body.dark-mode .nav-links a { color: #f9f9f9 !important; }
+    body.dark-mode .buy-btn { background: #48BB78; color: #181818; }
+    body.dark-mode .buy-btn:hover { background: #2F855A; color: #fff; }
+  </style>
 </body>
 </html>
