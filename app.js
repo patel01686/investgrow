@@ -20,10 +20,6 @@ mongoose.connect(mongoURI, {
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Static folders
-app.use(express.static('public'));
-app.use('/shop', express.static(__dirname + '/shop'));
-app.use('/pro', express.static(path.join(__dirname, 'pro')));
 
 // Routes
 app.get('/', (req, res) => res.render('home'));
